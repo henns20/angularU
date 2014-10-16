@@ -14,22 +14,30 @@ div.panel ng-show=panel.isSelected(3)
     
 div
 
-form name=reviewForm
+form name=reviewForm ng-contoller=ReviewController as reviewCtrl
 
 blockquote ng-repeat=review in product.reviews 
-    b Stars: {{review.stars}} b
-    {{review.body}}
-    <cite> by: {{review.author}}
+    b Stars: {{reviewCtrl.review.stars}} b
+    {{reviewCtrl.review.body}}
+    <cite> by: {{reviewCtrl.review.author}}
 
 // ng-model binds the form element value to the property 
-select ng-model=review.stars
+select ng-model=reviewCtrl.review.stars
   option value=1 1 star option
   option value=2 2 star option
   ...
 select
-textarea ng-model=review.body textarea
-input type=email /  ng-model=review.author
+textarea ng-model=reviewCtrl.review.body textarea
+input type=email /  ng-model=reviewCtrl.review.author
 input type=submit value=Submit /
 
 form
   
+// Controller info 
+// need to initialize review 
+
+app.controller('ReviewController', function() {
+
+  this.review = {};
+
+});
