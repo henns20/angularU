@@ -1,0 +1,35 @@
+// features: 
+1. list of the prior reviews 
+2. live preview of making a form
+3. the form itself
+
+
+
+div.panel ng-show=panel.isSelected(3)
+  h4 Reviews h4
+  blockquote ng-repeat=review in product.reviews 
+    b Stars: {{review.stars}} b
+    {{review.body}}
+    <cite> by: {{review.author}}
+    
+div
+
+form name=reviewForm
+
+blockquote ng-repeat=review in product.reviews 
+    b Stars: {{review.stars}} b
+    {{review.body}}
+    <cite> by: {{review.author}}
+
+// ng-model binds the form element value to the property 
+select ng-model=review.stars
+  option value=1 1 star option
+  option value=2 2 star option
+  ...
+select
+textarea ng-model=review.body textarea
+input type=email /  ng-model=review.author
+input type=submit value=Submit /
+
+form
+  
