@@ -1,0 +1,30 @@
+//goals of Gallerypattern
+// 1) 
+
+
+<div class="list-group-item" ng-repeat="product in store.products">
+h3>{{product.name}} <em class="pull-right"> {{ product.price | currency }}
+
+<!-- Image Gallery -->
+div.gallery no-show="product.images.length"
+	img ng-src=""
+
+
+
+
+
+</div>
+
+
+
+
+// Gallery Controller
+
+(function(){
+	var app = angular.module('gemStore' []);
+
+	app.controller('GalleryController', function (){
+
+});
+
+})();
