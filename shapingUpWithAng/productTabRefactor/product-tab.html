@@ -1,0 +1,15 @@
+<section>
+    <div class=""tabs">
+        <ul class="tab-list">
+            <li><a href ng-click="tab.setTab(1)">Description</a></li>
+            <li><a href ng-click="tab.setTab(2)">Specs</a></li>
+            <li><a href ng-click="tab.setTab(3)">Reviews</a></li>
+        </ul>
+
+    </div>
+
+    <!-- tabs content -->
+    <div ng-show="tab.isSetTo(1)" ng-include="'product.description.html'"></div>
+    <div ng-show="tab.isSetTo(2)" product-specs></div>  <!-- shows an attribute method -->
+    <product-review ng-show="tab.isSetTo(3)"></product-review>
+</section>
