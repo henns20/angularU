@@ -2,34 +2,35 @@
  * Created by john on 11/20/14.
  */
 
-var markticleStorageService = function() {
+var markticleStorageService;
+markticleStorageService = function () {
     var lsName = 'marks';
     var data = localStorage.getItem(lsName) ? JSON.parse(localStorage.getItem(lsName)) : [];
 
     return {
 
-        get: function() {
+        get: function () {
             return data;
         },
-        add: function(item) {
+        add: function (item) {
             this.remove(item.url);
             data.push(item);
             this.save();
         },
-        remove: function(url) {
+        remove: function (url) {
             var idx = null;
-            for(var i =0; i < data.length; i++) {
-                if(data[i].url === url) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].url === url) {
                     idx = i;
                     break;
                 }
             }
-            if(idx !== null) {
+            if (idx !== null) {
                 data.splice(idx, 1);
                 this.save();
             }
         },
-        save: function() {
+        save: function () {
             localStorage.setItem(lsName, JSON.stringify(data));
         }
     };

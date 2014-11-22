@@ -3,3 +3,5 @@
  */
 
 angular.module('jMarkticle').service('StorageService', markticleStorageService);
+
+
