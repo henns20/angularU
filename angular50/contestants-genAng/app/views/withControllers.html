@@ -1,0 +1,24 @@
+
+<section ng-controller="ContestantsCtrl as ctrl">
+    <ul>
+        <li ng-repeat="contestant in ctrl.contestants">
+            {{contestant.firstName}} {{contestant.lastName}}
+        </li>
+    </ul>
+
+<form ng-controller="ContestantsEditorCtrl as editorCtrl">
+    <h2>New Contestant</h2>
+    <fieldset>
+        <label>
+            First name
+            <input ng-model="editorCtrl.contestant.firstName"/>
+        </label>
+        <label>
+            Last name
+            <input ng-model="editorCtrl.contestant.lastName"/>
+        </label>
+        <button ng-click="editorCtrl.save()">Save</button>
+    </fieldset>
+</form>
+
+</section>

@@ -21,27 +21,47 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-app="contestantsGenAngularApp">
+    <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/withoutControllers">WOControllers</a></li>
+          <li><a ng-href="#/about">About</a></li>
           <li><a ng-href="#">Contact</a></li>
         </ul>
-        <h3 class="text-muted">contestantsGenAngular</h3>
+        <h3 class="text-muted">contestantsGenAngular-wControllers</h3>
       </div>
 
+      <div ng-view=""></div>
+      <div ng-app="contestantsGenAngularApp">
+        <h1>Contestants</h1>
+        <section ng-controller="ContestantsCtrl as ctrl">
+            <ul>
+                <li ng-repeat="contestant in ctrl.contestants">
+                    {{contestant.firstName}} {{contestant.lastName}}
+                </li>
+            </ul>
+            <form ng-controller="ContestantsEditorCtrl as editorCtrl">
+                <h2>New Contestant</h2>
+                <fieldset>
+                    <label>
+                        First name
+                        <input ng-model="editorCtrl.contestant.firstName"/>
+                    </label>
+                    <label>
+                        Last name
+                        <input ng-model="editorCtrl.contestant.lastName"/>
+                    </label>
+                    <button ng-click="editorCtrl.save()">Save</button>
+                </fieldset>
+            </form>
+        </section>
 
-    <div>
-
-        <div ng-view=""></div>
-
-    </div>
+      </div>
       <div class="footer">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
-
     </div>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -84,8 +104,6 @@
         <script src="scripts/controllers/contestants.js"></script>
         <script src="scripts/services/myservice.js"></script>
         <script src="scripts/services/myfactory.js"></script>
-        <script src="scripts/directives/myapp-contestant-editor.js"></script>
-        <script src="scripts/directives/myappcontestantlist.js"></script>
         <!-- endbuild -->
 </body>
 </html>
