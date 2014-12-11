@@ -1,3 +1,6 @@
+/**
+ * Created by john on 12/11/14.
+ */
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     jshint = require('gulp-jshint'),
@@ -7,10 +10,9 @@ var gulp = require('gulp'),
 
 // Modules that allow us to run a mini express server
 
-var embedlr = require('gulp-embedlr'),
-    refresh = require('gulp-livereload'),
-    lrserver = require('tiny-lr')(),
-    express = require ('express'),
+//embedlr = require('gulp-embedlr'),
+var  refresh = require('gulp-livereload'),
+    express = require('express'),
     livereload = require('connect-livereload'),
     livereloadport = 35729,
     serverport = 5000;
@@ -28,17 +30,17 @@ server.use(express.static('./dist'));
 //Because I like HTML5 pushstate .. this redirects everything back to our index.html
 
 server.all('/*', function(req, res) {
-    res.sendfile('index.html', {root: 'dist'});
+    res.sendFile('index.html', {root: 'dist'});
 });
 
 // make sure we can watch our javascript files, and as they change, run them through JSHint and have Browserify bundle the code into a single file.
 
 // JSHint task
 gulp.task('lint', function() {
-    gulp.src('/app/scripts/*.js')
-    .pipe(jshint())
-    // You can look into pretty reporters as well, but that's another story
-    .pipe(jshint.reporter('default'));
+    gulp.src('./app/scripts/*.js')
+        .pipe(jshint())
+        // You can look into pretty reporters as well, but that's another story
+        .pipe(jshint.reporter('default'));
 });
 
 gulp.task('browserify', function() {
@@ -57,21 +59,47 @@ gulp.task('watch', ['lint'], function() {
     // Watch our scripts
     gulp.watch(['app/scripts/*.js', 'app/scripts/**/*.js'], [
         'lint',
-        'browserify',
+        'browserify'
     ]);
 });
 
 gulp.task('views', function() {
     //Get our index.html
     gulp.src('app/index.html')
-    .pipe(gulp.dest('dist/'));
+        .pipe(gulp.dest('dist/'));
 
     //Any other view files form app/views
     gulp.src('./app/views/**/*')
-    // Will be put in the dist/views folder
-    .pipe(gulp.dest('dist/views/'));
+        // Will be put in the dist/views folder
+        .pipe(gulp.dest('dist/views/'));
 });
 
 // Setting up another watcher
 
 gulp.watch(['app/index.html', 'app/views/**/*.html'], ['views']);
+gulp.watch(['app/styles/**/*.scss'], [
+    'styles'
+]);
+gulp.watch('./dist/**').on('change', refresh.changed);
+// start the server
+
+// Dev task
+gulp.task('dev', function(){
+    //Start webserver
+    server.listen(serverport);
+    // Start live reload
+    refresh.listen(livereloadport);
+
+
+});
+
+gulp.task('styles', function() {
+   gulp.src('app/styles/*.scss')
+    // the one error handler that prevents Gulp from crashing if you make a mistake in your Sass
+       .pipe(sass({onError: function(e) {console.log(e);}}))
+       // optionally add a autoprefixer
+       .pipe(autoprefixer("last 2 versions", "> 1%", "ie 8"))
+       .pipe(gulp.dest('dist/css/'));
+});
+
+gulp.task('default', ['dev', 'watch']);
