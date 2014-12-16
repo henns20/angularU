@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>MSNBC Form Drupal Decoupling Aangular</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="app/app.js"></script>
+
+</head>
+<body ng-app="myApp" class="container">
+<h2>MSNBC Form, Drupal Decoupling, and AngularJs</h2>
+
+<!-- testing if angular works real quick-->
+<div ng-controller="TestCtrl as tCtrl">
+    {{test}}
+</div>
+
+<div ng-controller="MainFormCtrl">
+    <main-form></main-form>
+</div>
+
+
+
+
+
+
+<script>
+    angular.module('myApp')
+            .controller('TestCtrl', function($scope) {
+                $scope.test = "Angular is working, now";
+            })
+</script>
+</body>
+
+
+</html>
