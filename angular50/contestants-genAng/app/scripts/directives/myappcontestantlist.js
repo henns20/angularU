@@ -13,6 +13,7 @@ angular.module('contestantsGenAngularApp')
       restrict: 'E',
         controller: 'ListCtrl',
         controllerAs: 'list'
+
     };
   })
     .controller('ListCtrl', function() {

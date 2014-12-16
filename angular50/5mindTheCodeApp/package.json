@@ -2,6 +2,7 @@
   "name": "5mindTheCode",
   "version": "1.0.0",
   "devDependencies": {
+    "angular": "^1.3.6",
     "browserify": "^7.0.0",
     "connect-livereload": "^0.5.2",
     "express": "^4.10.4",

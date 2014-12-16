@@ -14,24 +14,14 @@ angular.module('contestantsGenAngularApp')
      },
       templateUrl: 'scripts/directives/myapp_contestant_editor.html',
         controller: 'ContestantEditorFormCtrl',
-        controllerAs: 'ctrl'
+        controllerAs: 'ctrl',
+        bindToController: true
     };
   })
-    .controller('ContestantEditorFormCtrl', function($scope) {
+    .controller('ContestantEditorFormCtrl', function() {
         this.contestant = {};
         this.save = function() {
-            var empty = true;
-            for(var key in this.contestant) {
-                if(this.contestant["key"] !== undefined) {
-                        empty = false;
-                    $scope.contestants.push(this.contestant);
+                    this.contestants.push(this.contestant);
                     this.contestant = {};
-                } else {
-                    console.log("the object is empty");
-                    this.contestant = {};
-                }
-
-            }
-
             };
     });
