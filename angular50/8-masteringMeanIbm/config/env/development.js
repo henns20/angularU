@@ -3,7 +3,7 @@
 module.exports = {
 	db: 'mongodb://localhost/meanibm-dev',
 	app: {
-		title: 'meanIbm - Development Environment'
+		title: 'HTML5 Denver'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

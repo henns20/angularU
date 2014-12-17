@@ -2,8 +2,8 @@
 
 module.exports = {
 	app: {
-		title: 'meanIbm',
-		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
+		title: 'HTML5 Denver',
+		description: 'HTML5 Denver User Group',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
 	port: process.env.PORT || 3000,
